@@ -30,6 +30,18 @@ export const columns: ColumnDef<FakeItem>[] = [
   {
     accessorKey: "url",
     header: "URL",
+    cell: ({ row }) => {
+      const url = row.getValue("url") as string;
+      if (!url) {
+        return null;
+      }
+
+      return (
+        <a href={url} target="_blank" className="text-link hover:underline">
+          {url}
+        </a>
+      );
+    },
   },
 ];
 
