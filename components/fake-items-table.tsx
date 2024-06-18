@@ -16,6 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ListResponse } from "@/models/list-response";
 
 export const columns: ColumnDef<FakeItem>[] = [
   {
@@ -32,8 +33,12 @@ export const columns: ColumnDef<FakeItem>[] = [
   },
 ];
 
-export default function FakeItemsTable() {
-  const { data } = useGetFakeItems();
+interface Props {
+  initialData?: ListResponse<FakeItem>;
+}
+
+export default function FakeItemsTable({ initialData }: Props) {
+  const { data } = useGetFakeItems({ initialData });
 
   const table = useReactTable({
     data: data?.data ?? [],
